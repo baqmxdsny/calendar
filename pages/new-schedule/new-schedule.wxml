@@ -1,0 +1,126 @@
+<!--pages/new-schedule/new-schedule.wxml-->
+<import src="../template/template-view.wxml"/>
+<view class="flex height100  box box-tb box-align-center {{!showScheduleOfDay?'':'noShow'}}" >
+  <scroll-view scroll-y="true" wx:if="{{showOneMonth}}" class="calendar pink-color box box-tb ">
+    <view class="horient top-handle fs28 box box-lr box-align-center box-pack-center">
+      <!-- <view class="prev box box-rl" bindtap="handleCalendar" data-handle="prev">
+        <image class="prev-handle box box-lr box-align-center box-pack-center" src='../images/ic_arrow_left2.png'></image>
+      </view> -->
+      <view bindtap="chooseYearAndMonth" class="date-area box box-lr box-align-center box-pack-center">{{cur_month || "--"}} 月 . {{cur_year || "--"}}</view>
+      <!-- <view class="next-today" bindtap="handleCalendar" data-handle="next">
+        <image class="next-handle box box-lr box-align-center box-pack-center" src='../images/ic_arrow_right.png'></image>
+      </view>  -->
+      <view class="next-search"  data-handle="next">
+        <image class="next-handle box box-lr box-align-center box-pack-center" bindtap='onSearchListener' src='../images/ic_search.png'></image>
+      </view> 
+    </view>
+      <view class="horient weeks box box-lr box-pack-center box-align-center">
+        <view class="flex week fs28" wx:for="{{weeks_ch}}" wx:key="{{index}}" data-idx="{{index}}">{{item}}</view>
+      </view>
+
+    <swiper style='height:{{height}}px' duration="500" current='{{currentId}}' circular='true'  bindchange="bindchangeTag">
+      <block wx:for="{{swiper_data}}" wx:for-index="indexparent" > 
+        <swiper-item>
+          <view class="days horient box box-lr box-wrap" style='height:100%' >
+            <view wx:if="{{hasEmptyGrid}}" class="grid  white-color box box-align-center box-pack-center" wx:for="{{swiper_empty[indexparent]}}" wx:key="{{indexparent}}" data-idx="{{indexparent}}">
+            </view>
+
+            <view class="grid white-color box box-align-center box-pack-center" wx:for="{{item}}" wx:for-index="indexchild" wx:key="{{indexchild}}" data-parentIdx='{{indexparent}}' data-childIdx="{{indexchild}}" bindtap="tapDayItem">
+                <view class="day {{item.choosed ? 'border-radius pink-bg' : ''}} {{item.day==CURDAY&&cur_month==CURMONTH&&CURYEAR==cur_year? 'text-red':''}} box box-align-center box-pack-center">{{item.day}}</view>
+                <view class='calendar-schedule-item {{item.isFinish==1?"color-gray":item.isUrgent==0?"color-green":item.isUrgent==1?"color-red":"color-white"}}' wx:if='{{index<3}}' wx:for='{{swiper_schedules[indexparent][indexchild]}}'>
+                  <view class='calendar-schedule-item-dot '>·</view>
+                  <view class='calendar-schedule-item-text'>{{item.scheduleType}}</view>
+                </view>
+                <!-- <view class='calendar-schedule-item'>
+                  <view class='calendar-schedule-item-dot {{true?"color-green":"color-red"}}'>·</view>
+                  <view class='calendar-schedule-item-text'>开会开不完杀人傻逼多</view>
+                </view>
+                <view class='calendar-schedule-item'>
+                  <view class='calendar-schedule-item-dot {{true?"color-green":"color-red"}}' >·</view>
+                  <view class='calendar-schedule-item-text'>开会dfadsfadfasdf</view>
+                </view> -->
+                <!-- <view class='calendar-schedule-item'>
+                  <view class='calendar-schedule-item-dot {{true?"color-green":"color-red"}}'>·</view>
+                  <view class='calendar-schedule-item-text'>开会</view>
+                </view> -->
+              </view>
+          </view>
+        </swiper-item>
+      </block>
+    </swiper>
+  </scroll-view> 
+</view>
+<!--灰色背景     -->
+<view class="drawer_screen" bindtap="powerDrawer" data-statu="close" wx:if="{{showYearMonth}}"></view> 
+
+<!--弹出框  -->
+<view wx:if="{{showYearMonth}}" class='picker'>
+  <view class='picker-title'>
+    <view class='title-content'>{{choose_year}}年{{choose_month}}月{{choose_day}}日周{{choose_week}}</view>
+  </view>
+  <view class='picker-content'>
+  	<picker-view class="picker-view" indicator-style="height: 80rpx; backgourd=#4d4d4d" style="width: 100%; height: 240rpx;" value="{{picker_value}}" bindchange="pickerChange">
+      <picker-view-column>
+        <view class="picker-view-left" wx:for="{{picker_month}}" style="line-height: 80rpx; height:80rpx">{{item}}月</view>
+      </picker-view-column>
+      <picker-view-column>
+        <view class="picker-view-center" wx:for="{{picker_day}}" style="line-height: 80rpx; height:80rpx">{{item}}日</view>
+      </picker-view-column>
+      <picker-view-column>
+        <view class="picker-view-right" wx:for="{{picker_year}}" style="line-height: 80rpx; height:80rpx">{{item}}年</view>
+      </picker-view-column>
+	  </picker-view>
+  </view>
+  <view class='picker-bottom'>
+    <view class='bottom-buttom'>
+      <view class='bottom-today' bindtap='onTodayListener'>今天</view>
+      <view class='bottom-ok' bindtap='tapPickerBtn'>确定</view>
+    </view>
+  </view>
+</view>
+
+<view wx:if="{{showScheduleOfDay}}" class="com-widget-goTop"  >
+  <image class='icon-gotop' bindtap="addNewScheduleListener" src='{{imageLists.ic_add}}'></image> 
+</view>
+
+<view class='sd-container {{showScheduleOfDay?"":"noShow"}}'>
+  <view class='sd-head'>
+    <view class='sd-head-top'>
+      <view class='sd-ht-center' bindtap='onDateListener'>
+        <view class='sd-head-YM' >{{chooseYear}}年{{chooseMonth}}月</view>
+        <view class='sd-head-arrowdown'>
+          <image class='sd-head-arrowdown-img' src='../images/ic_arrowdown.png'></image>
+        </view>
+      </view>
+    </view>
+    <view class='sd-head-DW'>
+      <view class='sd-head-DW-right'>{{chooseDay}}日.周{{chooseWeek}}</view>
+      <view class='sd-head-DW-left'>-----------------------------------------------</view>
+    </view>
+  </view>
+  <view class='sd-center'>
+    <view wx:if='{{!hasScheduleDay}}' >
+      <template is='defaultView'></template>
+    </view>
+    <view class='sd-center-item' wx:for="{{schedule_day_arrays}}">
+      <view wx:if="{{item.isFinish!=1}}" class='sd-center-item-hot {{item.isFinish==1?"sd-color-gray":item.isUrgent==0?"sd-color-green":item.isUrgent==1?"sd-color-red":"sd-color-white"}}' bindtap='onFinishOnLister' data-index='{{index}}'>•</view>
+      <view wx:if="{{item.isFinish==1}}" class='sd-center-item-hot' bindtap='onFinishOnLister' data-index='{{index}}'>
+        <image class='sd-center-item-img' src='../images/ic_done.png'></image>
+      </view>
+      <view class='sd-center-item-time {{item.isFinish==1? "sd-color-gray1":"" }}' bindtap='onScheduleItemListener' data-index='{{index}}'>{{item.hourse}}：{{item.minutes}} {{item.MonOrAfter}}</view>
+      <view class='sd-center-item-content {{item.isFinish==1? "sd-color-gray1":"" }}' bindtap='onScheduleItemListener' data-index='{{index}}'>{{item.scheduleType}}</view>
+      <view class='sd-center-item-use {{item.isFinish==1? "sd-color-gray1":"" }}' bindtap='onScheduleItemListener' data-index='{{index}}'>{{item.isAllDay==1?"全天":item.hours+"H"}}</view> 
+    </view>
+  </view>
+  <view class='sd-bottom'>
+  </view>
+</view>
+
+
+<!--生日弹出框  -->
+
+
+<view wx:if="{{showBirthdayStatus}}">
+  <!-- <view>{{birthdayData.scheduleType}}</view> -->
+   <template is="birthdayView" data="{{...birthdayData}}"></template> 
+</view>

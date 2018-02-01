@@ -1,0 +1,441 @@
+/* pages/template/template.wxss */
+page{
+  width: 100%;
+  height: 100%;
+  /* background-color: whitesmoke; */
+}
+
+.template-date-view{
+  width: 700rpx; 
+  height: 680rpx;
+  overflow: hidden; 
+  position: fixed; 
+  top: 30%; 
+  left: 0; 
+  z-index: 1001; 
+  background-color: white; 
+  margin: -100px 50rpx 0 25rpx; 
+  border-radius: 3px; 
+}
+
+.template-dv-header{
+  text-align: center;
+  font-size: 27rpx;
+  margin-top: 20rpx;
+}
+
+.template-date{
+  display: flex;
+  flex-direction: row;
+  height: 200rpx;
+  align-items: center;
+}
+
+
+
+.template-begindate{
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.template-begin-date{
+  font-size: 24rpx;
+  color: #999999;
+  text-align: center;
+
+}
+
+.template-begin-time-view{
+  display: flex;
+  flex-direction: row;
+  margin-top: 10rpx;
+  padding-bottom: 20rpx;
+  color:#999999;
+  /* align-items: center; */
+}
+
+.template-begin-time-view-choose{
+  display: flex;
+  flex-direction: row;
+  margin-top: 10rpx;
+  padding-bottom: 20rpx;
+  color:#333333;
+  border-bottom: 7rpx solid #b62f15;
+  /* align-items: center; */
+}
+
+.template-begin-time{
+  font-size: 45rpx;
+  text-align: center;
+
+}
+
+.template-begin-time-type{
+  display:inline-flex;
+  font-size: 25rpx;
+  margin-left: 20rpx;
+  align-items: flex-end;
+  /* height: 100rpx; */
+  /* text-align: inherit; */
+}
+.template-date-center{
+ width: 8rpx;
+ height: 12rpx;
+}
+.template-center{
+  width: 10%;
+ height: 40rpx;
+  display: flex;
+ line-height: 150rpx;
+ align-items: center;
+ justify-content: center;
+}
+
+.template-picker-content{
+  width: 100%;
+}
+
+.template-picker-view{
+  width: 100%;
+  font-size: 30rpx;
+  text-align: center;
+}
+
+.template-allday-view{
+
+  flex-direction: row;
+  margin-top: 20rpx;
+  height: 80rpx;
+  border-bottom: 1rpx solid #f5f5f5;
+     align-items: flex-end; 
+
+}
+
+
+.template-allday-text{
+  display:inline-flex;
+  position: absolute;
+  left: 40rpx;
+  font-size: 27rpx;
+  color: #999999;
+}
+
+.template-allday-switch{
+  display:inline-flex;
+  position: absolute;
+  right: 40rpx;
+}
+
+.template-allday-view .wx-switch-input{
+  width:68rpx;
+  height:32rpx;
+  }
+.template-allday-view .wx-switch-input::before{
+  width:68rpx;
+  height: 32rpx;
+  /* position: relative;
+  top: -5rpx; */
+  }
+.template-allday-view .wx-switch-input::after{
+  width: 29rpx;
+  height: 29rpx;
+
+  } 
+
+.template-R-view{
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, .5);
+  display: flex;
+  z-index: 1001; 
+  justify-content: center;
+  align-items: center;
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+}
+
+.template-picker-year{
+
+}
+
+.template-picker-month{
+
+}
+
+.template-picker-day{
+
+}
+
+.template-picker-hours{
+
+}
+
+.template-picker-minutes{
+
+}
+
+.template-picker-bottom{
+
+}
+
+.template-bottom-buttom{
+  position: absolute;
+  height: 80rpx;
+  right: 0;
+  display: flex;
+  flex-direction: row;
+  font-size: 27rpx;
+  align-items: center;
+
+}
+.template-show{
+  visibility: visible;
+}
+.template-hidden{
+   /* display: none;  */
+   visibility: hidden; 
+}
+.template-picker-view .template-33{
+  width: 33.3%;
+  position:relative;
+  height:100%;
+  overflow:hidden;
+  -webkit-flex: flex;
+  flex: none;
+
+
+}
+
+.template-bottom-today{
+  text-align: center;
+  margin-right: 50rpx;
+  padding-right: 20rpx;
+  padding-left: 20rpx;
+  height: 100%;
+  line-height: 80rpx;
+  color: #4d4d4d;
+}
+
+.template-bottom-ok{
+  text-align: center;
+  margin-right: 50rpx;
+  padding-right: 20rpx;
+  padding-left: 20rpx;
+  height: 100%;
+  line-height: 80rpx;
+  color: #4d4d4d;
+}
+
+.template-remind{
+  width: 700rpx; 
+ 
+  overflow: hidden; 
+
+  background-color: white; 
+  border-radius: 5px; 
+}
+
+.template-remind-list{
+  /* width: 100%; */
+  border-bottom: 1rpx solid #f5f5f5;display: flex;
+  padding-bottom: 20rpx;
+  padding-top: 20rpx;
+  flex-wrap: wrap;
+  padding-left: 40rpx;
+}
+
+.item-child{
+  width: 50%;
+  height: 100rpx;
+  display: flex;
+  flex-direction: row;
+}
+
+.template-remind-item{
+  align-items: center;
+  height: 100rpx;
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+
+}
+
+.remind-image{
+  height: 40rpx;
+  width: 40rpx;
+}
+
+.remind-text{
+  margin-left: 20rpx;
+  font-size: 30rpx;
+  color: #4d4d4d;
+}
+
+.template-buttom{
+  width: 100%;
+  height: 80rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+
+}
+
+.buttom-cancel{
+  height: 80rpx;
+  margin-right: 40rpx;
+  line-height: 80rpx;
+  font-size: 30rpx;
+  color: #4d4d4d;
+}
+
+.buttom-sumbit{
+  line-height: 80rpx;
+  height: 80rpx;
+  margin-left: 20rpx;
+  margin-right: 40rpx;
+  font-size: 30rpx;
+  color: #b62f15;
+}
+
+.template-birthday-top{
+  height: 250rpx;
+  background-color: #3d3e42;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.template-B-view{
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, .5);
+  display: flex;
+  flex-direction: column;
+  z-index: 1001; 
+  justify-content: center;
+  align-items: center;
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+}
+
+.template-B-top-birthdayview{
+  width: 70%;
+  display: flex;
+  height: 100%;
+   align-items: flex-end; 
+  justify-content: center;
+}
+
+.template-B-top-cancelview{
+    width: 30%;
+    height: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    /* align-items: center; */
+}
+
+.template-B-birthday{
+    width: 500rpx; 
+ 
+  overflow: hidden; 
+
+  background-color: white; 
+  border-radius: 5px; 
+
+}
+
+.template-B-top-birthdayimg{
+  width: 197rpx;
+  height: 184rpx;
+}
+
+
+.template-B-top-cancelimg{
+  margin-right: 40rpx;
+  margin-top: 40rpx;
+  padding-left:40rpx;
+  padding-bottom: 40rpx;
+  width: 28rpx;
+  height: 28rpx;
+}
+
+.template-birthday-center{
+  height: 400rx;
+}
+
+.template-B-center-person{
+  height: 100rpx;
+  font-size: 30rpx;
+  text-align: center;
+  line-height: 100rpx;
+  margin-top: 40rpx;
+}
+
+.template-B-center-age{
+  height: 100rpx;
+  font-size: 40rpx;
+  text-align: center;
+  line-height: 100rpx;
+  font-weight: 560;
+}
+
+.template-B-center-birthday{
+  height: 100rpx;
+  font-size: 27rpx;
+  text-align: center;
+  line-height: 100rpx;
+  color: #999999;
+}
+
+.template-birthday-bottom{
+  height: 100rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.template-B-bottom-left{
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.template-B-bottom-img{
+  width: 30rpx;
+  height: 32rpx;
+}
+
+.template-B-bottom-right{
+  width: 50%;
+    height: 100%;
+    display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.template-N-view{
+  margin-top:200rpx;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+  left:0;
+
+  position: fixed;
+}
+
+.template-N-img{
+  width: 324rpx;
+  height: 306rpx;
+}

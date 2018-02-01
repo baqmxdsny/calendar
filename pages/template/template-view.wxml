@@ -1,0 +1,115 @@
+<!--pages/template/template.wxml-->
+<!--时间选择    弹出框-->
+ <template name="dateChooseModel"> 
+  <view wx:if="true" class='template-date-view'>
+    <view class='template-dv-header'>滚轮编辑</view>
+    <view class='template-date'>
+      <view class='template-begindate' bindtap='onChooseDateListener' data-tag='begin'>
+        <view class='template-begin-date'>{{beginDate}}</view>
+        <view class='{{isBegin?"template-begin-time-view-choose":"template-begin-time-view"}}'>
+          <view class='template-begin-time'>{{beginTime}}</view>
+          <view class='template-begin-time-type'><view>{{begin_monorafter}}</view></view>
+        </view>
+      </view>
+      <view class='template-center'>
+        <image class='template-date-center' src='{{beginToEnd}}'></image>
+      </view>
+      <view class='template-begindate' bindtap='onChooseDateListener' data-tag='end'>
+        <view class='template-begin-date'>{{endDate}}</view>
+        <view class='{{!isBegin?"template-begin-time-view-choose":"template-begin-time-view"}}'>
+          <view class='template-begin-time'>{{endTime}}</view>
+          <view class='template-begin-time-type'>{{end_monorafter}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view class='template-picker-content'>
+      <picker-view class="template-picker-view" indicator-style="height: 80rpx; backgourd=#4d4d4d" style="width: 100%; height: 240rpx;" value="{{picker_value}}" bindchange="pickerChange">
+        <picker-view-column class='{{isChooseYearMonth?"template-show":"template-hidden"}}'>
+          <view  class="template-picker-year" wx:for="{{picker_year}}" style="line-height: 80rpx; height:80rpx">{{item}}年</view>
+        </picker-view-column>
+        <picker-view-column class='{{isChooseYearMonth?"template-show":"template-hidden"}}'>
+          <view class="template-picker-month" wx:for="{{picker_month}}" style="line-height: 80rpx; height:80rpx">{{item}}月</view>
+        </picker-view-column>
+        <picker-view-column class='{{isChooseYearMonth?"template-show":"template-hidden"}}'>
+          <view class="template-picker-day" wx:for="{{picker_day}}" style="line-height: 80rpx; height:80rpx">{{item}}日</view>
+        </picker-view-column>
+        <picker-view-column class='{{isChooseYearMonth?"template-show":"template-33"}}'>
+          <view class="template-picker-hours" wx:for="{{picker_hours}}" style="line-height: 80rpx; height:80rpx">{{item}}</view>
+        </picker-view-column>
+        <picker-view-column class='{{isChooseYearMonth?"template-show":"template-33"}}'>
+          <view class="template-picker-minutes" wx:for="{{picker_minutes}}" style="line-height: 80rpx; height:80rpx">{{item}}</view>
+        </picker-view-column>
+        <picker-view-column class='{{isChooseYearMonth?"template-show":"template-33"}}'>
+          <view class="template-picker-minutes" wx:for="{{picker_monorafter}}" style="line-height: 80rpx; height:80rpx">{{item}}</view>
+        </picker-view-column>
+      </picker-view>
+    </view>
+
+    <view class='template-allday-view'>
+      <view class='template-allday-text'>年月</view>
+      <switch type='switch' bindchange="isYearMonthListener" checked="{{isChooseYearMonth}}" class='template-allday-switch'></switch>
+    </view> 
+     <view class='template-picker-bottom'>
+      <view class='template-bottom-buttom'>
+        <view class='template-bottom-today' bindtap='dateFormReset'>取消</view>
+        <view class='template-bottom-ok' bindtap='dateFormSubmit'>确定</view>
+      </view>
+    </view> 
+
+  </view>
+ </template> 
+
+ <template name="remindChooseModel">  
+  <view class='template-R-view' bindtap='onRCancelListener'>
+    <view class='template-remind' catchtap='onRCancelListener1'>
+      <view class='template-remind-list' wx:for="{{lists}}" wx:for-index='parentIdx'>
+        <view class='template-remind-item' wx:for="{{item}}" wx:for-index='childIdx' catchtap='onRemindChooseListener' data-pIdx='{{parentIdx}}' data-cIdx='{{childIdx}}'>
+          <image class='remind-image' src='{{item.isChoose?remind_images.ic_choose:remind_images.ic_nochoose}}'></image>
+          <view class='remind-text'>{{item.remindValue}}</view>
+        </view>
+      </view>
+      <view class='template-buttom'>
+        <view class='buttom-cancel' bindtap='onRCancelListener'>取消</view>
+        <view class='buttom-sumbit' bindtap='onRSubmintlListener'>确定</view>
+      </view>
+    </view>
+  </view>
+ </template> 
+
+ <!--生日弹出框  -->
+ <template name="birthdayView">  
+  <view class='template-B-view' bindtap='onRCancelListener'>
+    <view class='template-B-birthday' catchtap='onRCancelListener1'>
+      <view class='template-birthday-top'>
+        <view class='template-B-top-birthdayview'>
+          <image class='template-B-top-birthdayimg' src='../images/pic_birthday.png'></image>
+        </view>
+        <view class='template-B-top-cancelview'>
+          <image class='template-B-top-cancelimg' src='../images/ic_close.png' bindtap='onRCancelListener'></image>
+        </view>
+      </view>
+      <view class='template-birthday-center'>
+        <view class='template-B-center-person'>{{scheduleType}}的生日</view>
+        <view class='template-B-center-age'>{{constellation}}座</view>
+        <view class='template-B-center-birthday'>{{birthdayDateString}}</view>
+      </view>
+      <view class='template-birthday-bottom'>
+        <view class='template-B-bottom-left' data-id='{{scheduleId}}' bindtap='onEditBirthdayListener'>
+          <image class='template-B-bottom-img'   src='../images/ic_edit_birthday.png' ></image>
+        </view>
+        <view class='template-B-bottom-right' data-index='{{index}}' data-id='{{scheduleId}}' bindtap='onDeletBirthdayListener'>
+          <image class='template-B-bottom-img' src='../images/ic_delete_birthday.png' ></image>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+
+<!--缺省页  -->
+<template name="defaultView">  
+  <view class='template-N-view'>
+      <image class='template-N-img' src='../images/pic_default.png'></image>
+  </view>
+</template>
+
